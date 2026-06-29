@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 여름신앙캠프 참가 신청서</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f5f5f0;color:#1a1a1a;padding:20px 16px;min-height:100vh}
+.wrap{max-width:540px;margin:0 auto}
+h1{font-size:20px;font-weight:700;text-align:center;margin-bottom:6px}
+.sub{font-size:13px;color:#777;text-align:center;margin-bottom:20px}
+.card{background:#fff;border:1px solid #e0e0da;border-radius:12px;padding:20px;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:700;color:#555;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #ebebeb}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:13px;color:#555;margin-bottom:5px;font-weight:500}
+.field input,.field select{display:block;width:100%;height:40px;padding:0 12px;border:1px solid #d0d0cc;border-radius:8px;background:#fafafa;color:#1a1a1a;font-size:14px;font-family:inherit}
+.field input:focus,.field select:focus{outline:none;border-color:#4f7ef8;background:#fff}
+.rg{display:flex;gap:8px}
+.rb{flex:1;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid #d0d0cc;border-radius:8px;cursor:pointer;font-size:13px;color:#555;background:#fafafa;user-select:none;transition:all 0.15s}
+.rb.on{border-color:#4f7ef8;background:#eef2ff;color:#3b5fe0;font-weight:700}
+.child-box{background:#f8f8f6;border:1px solid #e0e0da;border-radius:8px;padding:14px;margin-top:10px}
+.child-title{font-size:13px;font-weight:700;color:#555;margin-bottom:12px}
+.row3{display:grid;grid-template-columns:0.7fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.row3 label{display:block;font-size:12px;color:#777;margin-bottom:4px}
+.row3 input,.row3 select{display:block;width:100%;height:38px;padding:0 10px;border:1px solid #d0d0cc;border-radius:7px;background:#fff;color:#1a1a1a;font-size:13px;font-family:inherit}
+.row3 input:focus,.row3 select:focus{outline:none;border-color:#4f7ef8}
+.fee{background:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.fee-lbl{font-size:13px;color:#3b5fe0;font-weight:500}
+.fee-amt{font-size:19px;font-weight:700;color:#3b5fe0}
+.btn{width:100%;height:46px;background:#4f7ef8;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.15s}
+.btn:hover{background:#3b6de0}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.req{color:#e53e3e}
+.hint{font-size:11px;color:#aaa;margin-top:3px}
+.ok{background:#f0fff4;border:1px solid #9ae6b4;border-radius:10px;padding:20px;text-align:center;margin-top:14px;display:none}
+.ok .ico{font-size:28px;margin-bottom:8px}
+.ok p{font-size:15px;color:#276749;font-weight:600;margin-bottom:4px}
+.ok small{font-size:12px;color:#48bb78}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:sp 0.7s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:380px){.row3{grid-template-columns:1fr 1fr}.row3>div:last-child{grid-column:span 2}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>&#9968; 2026 여름신앙캠프 참가 신청서</h1>
+  <p class="sub">서하남성당 초등부 주일학교 여름신앙캠프</p>
+
+  <div class="card">
+    <div class="card-title">보호자 정보</div>
+    <div class="field">
+      <label>보호자 이름 <span class="req">*</span></label>
+      <input type="text" id="gname" placeholder="홍길동">
+    </div>
+    <div class="field">
+      <label>보호자 연락처 <span class="req">*</span></label>
+      <input type="tel" id="gphone" placeholder="010-0000-0000">
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <label>주일학교 등록 여부 <span class="req">*</span></label>
+      <div class="rg" id="sg">
+        <div class="rb" data-v="등록" onclick="pick('sg',this)">등록</div>
+        <div class="rb" data-v="미등록" onclick="pick('sg',this)">미등록</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">신청 자녀 수 및 참가비</div>
+    <div class="field" style="margin-bottom:0">
+      <label>자녀 수 선택 <span class="req">*</span></label>
+      <div class="rg" id="cg">
+        <div class="rb" data-v="1" onclick="pickN(1)">1자녀 &mdash; 8만원</div>
+        <div class="rb" data-v="2" onclick="pickN(2)">2자녀 &mdash; 각 6만원</div>
+        <div class="rb" data-v="3" onclick="pickN(3)">3자녀 &mdash; 각 4만원</div>
+      </div>
+    </div>
+    <div id="cc"></div>
+    <div class="fee" id="fb" style="display:none">
+      <span class="fee-lbl">납부 참가비</span>
+      <span class="fee-amt" id="fa"></span>
+    </div>
+  </div>
+
+  <button class="btn" id="sbtn" onclick="doSend()">
+    <span id="slbl">신청서 제출</span>
+  </button>
+
+  <div class="ok" id="ok">
+    <div class="ico">&#9989;</div>
+    <p>신청이 완료되었습니다!</p>
+    <small>담당자가 확인 후 연락드리겠습니다. 감사합니다 &#128591;</small>
+  </div>
+</div>
+
+<script>
+var SURL = 'https://script.google.com/macros/s/AKfycbxv75OpPCbGJ9tXwVSuMwrrY7Fq5kQDAmtHvjZoq5fkAT1P9sFeddC2beseq2cxKcmOCQ/exec';
+var cn = 0, busy = false;
+var FEE = {1:80000, 2:60000, 3:40000};
+
+function pick(gid, el) {
+  document.querySelectorAll('#'+gid+' .rb').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+}
+
+function pickN(n) {
+  cn = n;
+  document.querySelectorAll('#cg .rb').forEach(function(b){b.classList.remove('on');});
+  document.querySelector('#cg [data-v="'+n+'"]').classList.add('on');
+  var html = '';
+  for (var i = 1; i <= n; i++) {
+    html += '<div class="child-box"><div class="child-title">'+i+'번째 자녀 정보</div>';
+    html += '<div class="row3">';
+    html += '<div><label>학년 <span class="req">*</span></label><select id="cg'+i+'"><option value="">선택</option><option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option><option>중1</option><option>중2</option><option>중3</option></select></div>';
+    html += '<div><label>이름 <span class="req">*</span></label><input type="text" id="cn'+i+'" placeholder="홍민준"></div>';
+    html += '<div><label>세례명</label><input type="text" id="cb'+i+'" placeholder="요한"></div>';
+    html += '</div>';
+    html += '<div class="field" style="margin-bottom:0"><label>주민등록번호 <span class="req">*</span></label><input type="text" id="cr'+i+'" placeholder="000000-0000000" maxlength="14" oninput="fmtR(this)"><div class="hint">보험 가입 목적으로만 사용됩니다</div></div>';
+    html += '</div>';
+  }
+  document.getElementById('cc').innerHTML = html;
+  document.getElementById('fb').style.display = 'flex';
+  document.getElementById('fa').textContent = (FEE[n]*n).toLocaleString() + '원';
+}
+
+function fmtR(el) {
+  var v = el.value.replace(/[^0-9]/g,'');
+  if (v.length > 6) v = v.slice(0,6)+'-'+v.slice(6,13);
+  el.value = v;
+}
+
+function gv(id){return document.getElementById(id).value.trim();}
+function gpick(gid){var a=document.querySelector('#'+gid+' .rb.on');return a?a.dataset.v:'';}
+
+function doSend() {
+  if (busy) return;
+  var gname=gv('gname'), gphone=gv('gphone'), sunday=gpick('sg');
+  if (!gname){alert('보호자 이름을 입력해주세요.');return;}
+  if (!gphone){alert('보호자 연락처를 입력해주세요.');return;}
+  if (!sunday){alert('주일학교 등록 여부를 선택해주세요.');return;}
+  if (!cn){alert('신청 자녀 수를 선택해주세요.');return;}
+  var kids=[];
+  for (var i=1;i<=cn;i++){
+    var nm=gv('cn'+i), gr=document.getElementById('cg'+i).value, bt=gv('cb'+i), rn=gv('cr'+i);
+    if (!nm){alert(i+'번째 자녀 이름을 입력해주세요.');return;}
+    if (!gr){alert(i+'번째 자녀 학년을 선택해주세요.');return;}
+    if (!rn||rn.length<14){alert(i+'번째 자녀 주민등록번호를 올바르게 입력해주세요.');return;}
+    kids.push({grade:gr,name:nm,baptism:bt||'--',rrn:rn});
+  }
+  var data={timestamp:new Date().toLocaleString('ko-KR'),guardianName:gname,guardianPhone:gphone,sunday:sunday,childCount:cn,fee:FEE[cn]*cn,children:kids};
+  busy=true;
+  document.getElementById('sbtn').disabled=true;
+  document.getElementById('slbl').innerHTML='<span class="spin"></span> 제출 중...';
+  fetch(SURL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(function(){
+      document.getElementById('ok').style.display='block';
+      document.getElementById('ok').scrollIntoView({behavior:'smooth'});
+      document.getElementById('sbtn').style.display='none';
+      busy=false;
+    })
+    .catch(function(){
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+      document.getElementById('sbtn').disabled=false;
+      document.getElementById('slbl').textContent='신청서 제출';
+      busy=false;
+    });
+}
+</script>
+</body>
+</html>
